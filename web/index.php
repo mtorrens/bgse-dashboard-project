@@ -48,7 +48,8 @@ function show_content(optionsId) {
 }
 </script>
 <body>
-	<div id="header"><h1>Product recommendation and customer analysis</h1></div>
+	<!-- <div id="header"><h1>Product recommendation and customer analysis</h1></div> -->
+	<div id="header"><h1>Page title for Group 3</h1></div>
 
 	<div id="menu">
 		<a id="home_link" href="#" class="active" onclick="show_content('home'); return false;">Home</a> &middot;
