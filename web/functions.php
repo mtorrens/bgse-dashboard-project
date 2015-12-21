@@ -4,7 +4,8 @@ function connect_to_db() {
     $host = "localhost";
     $dbuser = "root";
     $dbpass = "root";
-    $dbname = "ecommerce";
+    $dbname = "omsong";
+    //$dbname = "ecommerce";
 
     $link = mysql_connect($host,$dbuser,$dbpass);
 

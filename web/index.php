@@ -1,9 +1,20 @@
 <?php ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
 <html>
 <head>
-	<title>MyApp</title>    
+	<title>music_app</title>    
 	<link rel="stylesheet" type="text/css" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="bootstrap/css/bootstrap.css" type="text/css">
+  <link rel="stylesheet" href="bootstrap/css/bootstrap-responsive.css" type="text/css">
+  <link rel="stylesheet" href="themes/css/prettyPhoto.css" type="text/css">
+  <link rel="stylesheet/less" href="themes/css/main.less"/>
+  <script src="themes/js/less.js" type="text/javascript"></script>
+  <link rel="stylesheet" href="themes/font-awesome/css/font-awesome.min.css">
+  <link charset="utf-8" href="//fonts.googleapis.com/css?family=Roboto:100,300,400,500,700" media="screen" rel="stylesheet">
+  <link charset="utf-8" href="//fonts.googleapis.com/css?family=Roboto%20Condensed:400" media="screen" rel="stylesheet">
+  <script charset="utf-8" src="//www.gstatic.com/external_hosted/modernizr/modernizr.js"></script>
 </head>
 <script>
 /**
@@ -49,39 +60,41 @@ function show_content(optionsId) {
 </script>
 <body>
 	<!-- <div id="header"><h1>Product recommendation and customer analysis</h1></div> -->
-	<div id="header"><h1>Page title for Group 3</h1></div>
+	<div id="header"><h1>The Evolution of Music</h1></div>
 
 	<div id="menu">
-		<a id="home_link" href="#" class="active" onclick="show_content('home'); return false;">Home</a> &middot;
-		<a id="data_link" href="#" onclick="show_content('data'); update_data_charts(); return false;">Data</a> &middot;
-		<a id="analysis_link" href="#" onclick="show_content('analysis'); return false;">Analytics</a> 
+		<a id="home_link" href="index.php" class="active" onclick="show_content('home'); return false;">Home</a> &middot;
+		<a id="data_link" href="data.php" onclick="show_content('data'); update_data_charts(); return false;">Data</a> &middot;
+		<a id="analysis_link" href="analytics.php" onclick="show_content('analysis'); return false;">Analytics</a> 
 	</div>
 
 	<div id="main">
 
 		<div id="home">
-			<h2>Home</h2>
-			<h3>The challenge</h3>
+			<h2>Our challenge</h2>
 			
-			<p>Every sales team seeks to identify and exploit opportunities to increase sales. In addition to acquiring new customers, another way to increase sales is to target existing customers by providing them with relevant offers that might persuade them to purchase additional items. In order to be able to do that, a sales team would need to be able to build up offers that customers truly value and to identify those customers that are more likely to purchase new items.</p>
+      <p> Music is a worldwide phenomenon that has changed completely throughout the 20<sup>th</sup> century. With globalization, music has evolved at the speed of light in a very short amount of time. Understanding this evolution in terms of time, genre, origin and popularity of the music that is being produced is a very complex task that we begin to approach with this project. </p>
+
+      <p> To do that, we exploit the data from the <i><a href="http://labrosa.ee.columbia.edu/millionsong/">Million Song Dataset</a> </i>, which contains audio features, analysis and metadata of one million songs in the 20<sup>th</sup> and 21<sup>st</sup> centuries, all of them provided by <i><a href="http://the.echonest.com/">The Echo Nest</a> </i>, a music intelligence and data platform for developers and media companies.  We worked with a representative subset of 10,000 songs made available on their website for smaller sized experiments. With this data we mainly wanted to cross-examine relationships between the interest variables to explore music evolution over time, differences in music genres, and origins and popularity of music.</p>
 			
-			<ul style="list-style-type:circle">
-  				<li> The first objective can be achieved by developing a recommendation engine which, based on a customer's intended purchases can recommend additional items that are related to those already in the shopping basket. </li>
-  				<li> The second objective can be achieved by analyzing the average contribution that existing customers make across the entire product line. This is based on the belief that customers that have historically generated the highest revenues are not necessarily the same ones with the highest marginal revenue potential.</li>
-			</ul>
+      <ol>
+        <li><b>Genre differentiation.</b> We aimed to look at the differences in the internal built of music belonging to different genres.</li>
+        <li><b>Time evolution.</b> We aimed to find out how music has evolved over time.  We hoped to spot significant differences in music variables from music produced over different decades.</li>
+        <li><b>Music Origin.</b> We explored where music is being produced and whether there is concentration or sparsity of music production across the world.</li>
+        <li><b>Song popularity.</b> We also aimed to find which key built-in features contribute to a song's popularity.</li>
+        <li><b>Recommender system.</b> We developed a music recommender system such that songs and bands that have similar features are clustered to suggest near neighbors as possible favored candidates for a song that a user selects.</li>
+      </ol>
+      
+      <h2>Our solution</h2>
+      
+      <p>The vast information contained in each song is examined and the selected features and metadata are extracted to perform a series of statistical analyses. The key part of the project is devoted to using the technical features of the song to determine how close are our songs in the selected dimensions. With that, we can cluster them and extract the most relevant information, which lead us to surprising and interesting results.</p>
+      
+      <p>In the following tabs there is a detailed description of the data we have used and the different analyses performed and results obtained to better understand each of the points above stated.</p>
+      
+      <p>We hope you enjoy it! :)</p>
 			
-			<h3>The solution</h3>
-						
-			<p>We have addressed the above challenges in two steps:</p>
-				<ul style="list-style-type:circle">
-					<li> First we have implemented a simple recommendation system, based on the <b><a href="http://www.wikipedia.org/wiki/Apriori_algorithm" target="_blank">Apriori algorithm.</a></b>. This algorithm analyses existing transaction recorded in the database and develops associative rules between products, based on the frequency of them being purchased together. The output of the algorithm is a set of rules which link a set of two or more products (which are assumed to be already in the customer's basket) with an additional product that the customer is recommended to buy.</li>
-					<li> To address the second part of the challenge, i.e. to identify the company's "most interesting revenue generating customers", we have carried out a LASSO Regression, on the subset of the 20 top clients measured by total revenue, regressing each customers purchases (measure in quantities) on the total revenues associated to each product. We have used the results of this regression to rank customers according to their <b>percentage monetary contribution</b> to total revenues from buying one additional product. We have used a <b>LASSO approach</b> to identify customers for personalised marketing campaigns, allowing the company to move away from a massive and unrestricted campaign to a more efficient use of marketing resources.</li>
-				</ul>
-						
 		</div>	
 
-                <?php include 'data_and_analysis.php' ?>
-	
 	</div>
 
 	<div id="footer">Project team: Niti Mishra, Miquel Torrens and Bálint Ván</div>
