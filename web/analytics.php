@@ -48,6 +48,8 @@
 		
   <center><img src="pca_genre.png" style="width: 50%"></center>
 	
+	<p>The first two principal components explain over 40% of the variance of the data. Axis that are closer together in the plot represent positively correlated features. Axis that point in opposite directions are negatively correlated features. Axis with angles close to 90º mean uncorrelated variables. The circles represent a confidence region for each genre, represented by the color of the circle. This way we can see which genres are similar or different. We can also derive for which variables each of them have on average relatively high or low values.</p>
+	
 	<h2>Time evolution</h2>
 	
 	<p>We replicated the PCA analysis as with genre by aggregating the data per decade this time. We plot the same principal components that rely on the technical features but we group the points according to time instead. We find no major distinct difference among music produced over time.</p>
@@ -64,15 +66,15 @@
 
 	<h2>Analysing music origins</h2>
 	
-  <p>We used Google Maps API to <b>geolocate</b> each of the songs and computed the country of origin with their coordinates. We then aggregated the data per country and decade and computed the Herfindahl index for each decade until 2000s.</p>
+  <p>We used Google Maps API to <b>geolocate</b> each of the songs and computed the country of origin with their coordinates. We then aggregated the data per country and decade and computed the Herfindahl index for each decade.</p>
 
   <center><img src="country_map.png" style="width: 80%"></center>
 
-  <p>Additionally, we used elementary <b>time series</b> analysis to predict the music production of the current decade to observe the tendency of the concentration of music. During the last century the concentration had the tendency to go down but currently it seems to be on the rise again.
+  <p>Additionally, we used elementary <b>time series</b> analysis to predict the music production of the current decade to observe the tendency of the concentration of music. During the last century the concentration had the tendency to go down but currently it seems to be on the rise again. We can see this in the chart below. Numbers represent percentages and are ranked accoring to the values of the last column, with the Herfindahl index in the first row.
 
   <?php
     // Most sold product pairs
-    $title = "Distribution of songs across Top 10 countries and decades, with Herfindahl index on top";
+    $title = "Distribution of songs across Top 10 countries per decade";
     $query = "SELECT country, fifties, sixties, seventies, eighties, nineties, two_thousands, twenty_tens FROM omsong.world_production ORDER BY rank LIMIT 10;";
     query_and_print_table($query, $title);
   ?>
